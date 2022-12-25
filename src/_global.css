@@ -1,0 +1,88 @@
+:root {
+    /* Backgrounds */
+    --background-primary: #FFFFFF;
+    --background-seconardy: #F3F3F5;
+    --brand-primary: #613EEA;
+
+    /* Buttons */
+    --button-primary: #613EEA;
+    --button-primary-hover: #7856FF;
+    --button-secondary: #F2EFFD;
+    --button-secondary-hover: #E9E5FC;
+
+    /* Text */
+    --text-primary: #000000;
+    --text-secondary: rgba(9, 31, 64, 0.6);
+    --text-placeholder: rgba(105, 120, 142, 0.4);
+    --text-disabled: rgba(105, 120, 142, 0.4);
+
+    /* Icons */
+    --icon-action: #613EEA;
+    --icon-descripxive: rgba(105, 120, 142, 0.6);
+
+    /* Statuses */
+    --danger: #EA3E67;
+    --warning: #F97841;
+    --success: #54D3AD;
+
+    /* Typography  */
+    font-family: 'Lexend Deca', serif;
+}
+
+h1 {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 120%;
+}
+
+h2 {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 140%;
+}
+
+h3 {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+}
+
+h4 {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+}
+
+h5 {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+h6 {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-transform: uppercase;
+}
+
+p {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+}
+
+p.small {
+    font-size: 14px !important;
+}
+
+p.large {
+    font-size: 18px !important;
+}
