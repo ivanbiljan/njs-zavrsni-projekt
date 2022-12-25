@@ -6,6 +6,11 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": "src",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@shared/*": ["shared/*"]
+    },
     "noImplicitAny": true,
     "noImplicitThis": true,
     "allowJs": false,

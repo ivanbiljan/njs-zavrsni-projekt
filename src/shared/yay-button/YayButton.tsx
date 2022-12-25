@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import "./button.scss"
+import "./YayButton.scss"
 import LoaderDefault from "/src/assets/images/loader.png";
 import LoaderWhite from "/src/assets/images/loader-white.png";
 
