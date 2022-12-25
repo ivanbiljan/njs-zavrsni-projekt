@@ -1,11 +1,15 @@
 import React from "react";
 import classNames from "classnames";
 import "./button.scss"
+import LoaderDefault from "/src/assets/images/loader.png";
+import LoaderWhite from "/src/assets/images/loader-white.png";
+import {Icon} from "../../assets/icon";
 
 export interface ButtonProps {
     onClick: () => void;
     text: string;
-    styleType: "primary" | "secondary";
+    color: "purple" | "white";
+    icon?: JSX.Element;
     htmlType?: "button" | "submit";
     size?: "large" | undefined;
     className?: string;
@@ -14,9 +18,9 @@ export interface ButtonProps {
 }
 
 const YayButton: React.FC<ButtonProps> = (props: ButtonProps) => {
-    const { onClick, text, styleType, htmlType, size, className, disabled, loading } = props;
+    const { onClick, icon, text, color, htmlType, size, className, disabled, loading } = props;
     const onClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
+        if (disabled || loading) {
             e.preventDefault();
 
             return;
@@ -25,14 +29,23 @@ const YayButton: React.FC<ButtonProps> = (props: ButtonProps) => {
         onClick();
     };
 
-    const classes = classNames("btn", styleType,  size ? `size--${size}` : "", className);
+    const classes = classNames("btn", color,  size ? `size--${size}` : "", className);
 
     if (loading) {
-        return <button className={classes}></button>;
+        const Loader = color === "purple" ? LoaderWhite : LoaderDefault;
+
+        return <button className={classNames(classes, "loading")}>
+            <img src={Loader} alt={"Loader"} className={"rotate"}/>
+        </button>;
     }
 
     return (
         <button type={htmlType ?? "button"} className={classes} disabled={disabled} onClick={onClickHandler}>
+            {icon &&
+                <div>
+                    {icon}
+                </div>
+            }
             <div className={"btn-text"}>{text}</div>
         </button>
     );
