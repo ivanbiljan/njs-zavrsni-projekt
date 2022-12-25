@@ -13,9 +13,9 @@ const LoaderIcon = (props: IconProps) => {
             <defs>
                 <radialGradient id="paint0_angular_6455_2229" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
                                 gradientTransform="translate(12 12) scale(12)">
-                    <stop stopColor="#27AE60" stopOpacity="0"/>
-                    <stop offset="0.0001" stopColor="#613EEA" stopOpacity="0"/>
-                    <stop offset="1" stopColor="#613EEA"/>
+                    <stop stopColor="#ffffff" stopOpacity="0"/>
+                    <stop offset="0.0001" stopColor="#ffffff" stopOpacity="0"/>
+                    <stop offset="1" stopColor="#ffffff"/>
                 </radialGradient>
             </defs>
         </svg>
