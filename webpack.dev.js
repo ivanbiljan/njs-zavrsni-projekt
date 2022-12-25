@@ -23,7 +23,7 @@ module.exports = merge(common, {
         }),
         new ForkTsCheckerWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(), // DEV ONLY!!! HMR exchanges, adds, or removes modules while an application is running, without a full reload
-        new ReactRefreshWebpackPlugin(), // DEV ONLY!!! "Fast Refresh" for React components.
+        new ReactRefreshWebpackPlugin(), // DEV ONLY!!! "Fast Refresh" for React shared.
         new CompressionPlugin(),
     ],
     devServer: {

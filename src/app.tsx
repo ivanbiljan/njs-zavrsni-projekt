@@ -1,6 +1,6 @@
-import YayButton from "./components/button/button";
+import YayButton from "./shared/button/button";
 import LoaderIcon from "./assets/svgs/loader";
-import YayInput from "./components/text-input/YayInput";
+import YayInput from "./shared/text-input/YayInput";
 
 const App = () => {
     return (
