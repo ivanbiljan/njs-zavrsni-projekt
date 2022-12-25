@@ -22,10 +22,14 @@
     &:hover {
       background-color: var(--button-primary-hover);
     }
+
+    &:focus {
+      box-shadow: 0 0 0 3px #E6E0FB;
+    }
   }
 
   &.white {
-    box-shadow: 0 0 0 1px var(--button-secondary); /* All the borders by using the spread properties */
+    box-shadow: 0 0 0 1px var(--button-secondary);
     background-color: var(--white);
 
     & > .btn-text {
@@ -34,6 +38,10 @@
 
     &:hover {
       background-color: var(--button-secondary-hover);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px #E6E0FB;
     }
   }
 
@@ -52,10 +60,6 @@
 
   &:disabled {
     opacity: 0.2 !important;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 3px #E6E0FB;
   }
 }
 
