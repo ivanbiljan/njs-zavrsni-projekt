@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import {Home, Route as HomeRoute} from "./home/Home";
-import { YayModalContainer } from "@shared/yay-modal/YayModalContainer";
+import { YayModalContainer } from "./shared/yay-modal/YayModalContainer";
 
 const App = () => {
     return (
