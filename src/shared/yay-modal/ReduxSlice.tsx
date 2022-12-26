@@ -34,8 +34,8 @@ const slice = createSlice({
 });
 
 // https://stackoverflow.com/questions/51197819/declaring-const-of-generic-type/51197906
-export const showModal: <T extends ModalDataBase = ModalDataBase>(modal: Modal, args: T) => AnyAction = (
-    modal: Modal,
+export const showModal: <T extends ModalDataBase = ModalDataBase>(modal: (props: T) => JSX.Element, args: T) => AnyAction = (
+    modal: any,
     args: any
 ) => slice.actions.showModal({ modal: modal, actionContext: args });
 export const { hideModal } = slice.actions;
