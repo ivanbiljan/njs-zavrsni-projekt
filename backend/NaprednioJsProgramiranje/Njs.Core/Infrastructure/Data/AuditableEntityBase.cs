@@ -17,6 +17,18 @@ public abstract class AuditableEntityBase : EntityBase
 }
 
 /// <summary>
+///     Represents a contract that describes an entity that must have a tenant associated with it. These entities are
+///     always filtered by their tenant ID.
+/// </summary>
+public interface IMustHaveTenant
+{
+    /// <summary>
+    ///     Gets or sets the unique tenant identifier.
+    /// </summary>
+    string TenantId { get; set; }
+}
+
+/// <summary>
 /// Represents an end user.
 /// </summary>
 public sealed class User : AuditableEntityBase
