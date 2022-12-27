@@ -15,7 +15,10 @@
 
     /* Text */
     --text-primary: #000000;
+
     --text-secondary: rgba(9, 31, 64, 0.6);
+    --text-secondary-dark: rgba(255, 255, 255, 0.7);
+
     --text-placeholder: rgba(105, 120, 142, 0.4);
     --text-disabled: rgba(105, 120, 142, 0.4);
 
