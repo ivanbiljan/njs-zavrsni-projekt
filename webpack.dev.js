@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const common = require("./webpack.common.js");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
@@ -43,7 +44,7 @@ module.exports = merge(common, {
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
+                use: ["style-loader", "css-loader", "postcss-loader"],
             },
             {
                 test: /\.png|jpg|gif$/,
@@ -61,7 +62,7 @@ module.exports = merge(common, {
                     // Translates CSS into CommonJS
                     "css-loader",
                     // Compiles Sass to CSS
-                    "sass-loader",
+                    "sass-loader"
                 ],
             },
         ],
