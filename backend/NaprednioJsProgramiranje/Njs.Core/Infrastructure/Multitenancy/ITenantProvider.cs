@@ -1,13 +1,9 @@
-﻿namespace Njs.Core.Shared.Multitenancy;
+﻿using Microsoft.AspNetCore.Http;
 
-/// <summary>
-///     Represents a contract that describes a provider for determining the tenant context of an HTTP request.
-/// </summary>
+namespace Njs.Core.Shared.Multitenancy;
+
+
 public interface ITenantProvider
 {
-    /// <summary>
-    ///     Determines the current tenant for an HTTP request.
-    /// </summary>
-    /// <returns>The tenant ID, or <see langword="null" /> if no tenant exists.</returns>
-    TenantProviderResult? GetTenant();
+    TenantProviderResult? GetTenant(HttpContext httpContext);
 }

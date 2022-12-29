@@ -1,18 +1,15 @@
-﻿namespace Njs.Core.Shared.Multitenancy;
+﻿using Microsoft.AspNetCore.Http;
 
-/// <summary>
-/// Represents the default implementation of the <see cref="ITenantResolver"/> interface.
-/// </summary>
+namespace Njs.Core.Shared.Multitenancy;
+
 internal sealed class TenantResolver : ITenantResolver
 {
+    private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IEnumerable<ITenantProvider> _providers;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="TenantResolver"/> class.
-    /// </summary>
-    /// <param name="providers">A collection of <see cref="ITenantProvider"/> objects that can be used to extract the current tenant.</param>
-    public TenantResolver(IEnumerable<ITenantProvider> providers)
+    
+    public TenantResolver(IHttpContextAccessor httpContextAccessor, IEnumerable<ITenantProvider> providers)
     {
+        _httpContextAccessor = httpContextAccessor;
         _providers = providers;
     }
 
@@ -21,7 +18,7 @@ internal sealed class TenantResolver : ITenantResolver
     {
         foreach (var provider in _providers)
         {
-            var tenant = provider.GetTenant();
+            var tenant = provider.GetTenant(_httpContextAccessor.HttpContext);
             if (tenant == null)
             {
                 continue;
