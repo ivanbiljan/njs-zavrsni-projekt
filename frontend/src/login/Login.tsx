@@ -7,14 +7,14 @@ import * as Yup from "yup";
 export const Route = "/login";
 
 export const Login = () => {
-    const schema = Yup.object({
+    const validationSchema = Yup.object({
         email: Yup.string().email("The provided value is not a valid email").required("Email is required"),
         password: Yup.string().required("The password cannot be empty")
     })
 
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: "onBlur",
-        resolver: yupResolver(schema)
+        resolver: yupResolver(validationSchema)
     });
 
     const onSubmitHandler = (data: any) => {
