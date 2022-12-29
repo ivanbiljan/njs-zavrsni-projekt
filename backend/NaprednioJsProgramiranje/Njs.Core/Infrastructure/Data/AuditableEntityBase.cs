@@ -16,55 +16,37 @@ public abstract class AuditableEntityBase : EntityBase
     public DateTime? ArchivedAtUtc { get; set; }
 }
 
-/// <summary>
-///     Represents a contract that describes an entity that must have a tenant associated with it. These entities are
-///     always filtered by their tenant ID.
-/// </summary>
 public interface IMustHaveTenant
 {
-    /// <summary>
-    ///     Gets or sets the unique tenant identifier.
-    /// </summary>
     string TenantId { get; set; }
 }
 
-/// <summary>
-/// Represents an end user.
-/// </summary>
 public sealed class User : AuditableEntityBase
 {
-    /// <summary>
-    /// Gets or sets the first name.
-    /// </summary>
-    public string FirstName { get; set; }
+    public User(string username, string email, string password, string countryCode, string localPhoneNumber)
+    {
+        Username = username;
+        Email = email;
+        HashedPassword = password;
+        CountryCode = countryCode;
+        LocalPhoneNumber = localPhoneNumber;
+    }
     
-    /// <summary>
-    /// Gets or sets the last name.
-    /// </summary>
-    public string LastName { get; set; }
+    public string Username { get; init; }
     
-    /// <summary>
-    /// Gets or sets the date of birth.
-    /// </summary>
-    public DateTime DateOfBirth { get; set; }
+    public string Email { get; set; }
     
-    /// <summary>
-    /// Gets or sets the dialing code that represents the country the user has registered from.
-    /// </summary>
+    public string? FirstName { get; set; }
+    
+    public string? LastName { get; set; }
+    
+    public DateTime? DateOfBirth { get; set; }
+    
     public string CountryCode { get; set; }
     
-    /// <summary>
-    /// Gets or sets the local phone number; i.e., anything after <see cref="CountryCode"/>.
-    /// </summary>
     public string LocalPhoneNumber { get; set; }
-
-    /// <summary>
-    /// Gets the full phone number in +CountryCode Local format.
-    /// </summary>
+    
     public string FullPhoneNumber => $"{CountryCode} {LocalPhoneNumber}";
     
-    /// <summary>
-    /// Gets or sets the hashed password.
-    /// </summary>
     public string HashedPassword { get; set; }
 }

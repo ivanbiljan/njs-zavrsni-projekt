@@ -7,12 +7,12 @@ using Njs.Core.Shared.Multitenancy;
 
 namespace Njs.Core.Infrastructure.Persistence;
 
-public sealed class GyroContext : DbContext
+public sealed class NjsContext : DbContext
 {
     private readonly ITenantResolver _tenantResolver;
     private readonly string _tenantId;
 
-    public GyroContext(DbContextOptions<GyroContext> options, ITenantResolver tenantResolver) : base(options)
+    public NjsContext(DbContextOptions<NjsContext> options, ITenantResolver tenantResolver) : base(options)
     {
         _tenantResolver = tenantResolver;
         
@@ -38,7 +38,7 @@ public sealed class GyroContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(GyroContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NjsContext).Assembly);
         ConfigureGlobalFilters(modelBuilder);
     }
 
