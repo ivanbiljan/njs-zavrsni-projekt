@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Njs.Core.Infrastructure.Data;
 
-namespace Njs.Core.Infrastructure.Configurations;
+namespace Njs.Core.Infrastructure.Persistence.Configurations;
 
 internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
