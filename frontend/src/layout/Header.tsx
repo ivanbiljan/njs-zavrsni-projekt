@@ -1,5 +1,5 @@
 import YayLogo from "/src/assets/svgs/yay-logo.svg";
-import { isMobileDevice } from "../helpers/helperFunctions";
+import { isMobileDevice } from "./../shared/helperFunctions";
 
 const HeaderMobile = () => {
     return (

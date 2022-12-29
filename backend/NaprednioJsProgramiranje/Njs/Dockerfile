@@ -8,7 +8,7 @@ WORKDIR /src
 COPY ["NaprednioJsProgramiranje/NaprednioJsProgramiranje.csproj", "NaprednioJsProgramiranje/"]
 RUN dotnet restore "NaprednioJsProgramiranje/NaprednioJsProgramiranje.csproj"
 COPY . .
-WORKDIR "/src/NaprednioJsProgramiranje"
+WORKDIR "/frontend/src/NaprednioJsProgramiranje"
 RUN dotnet build "NaprednioJsProgramiranje.csproj" -c Release -o /app/build
 
 FROM build AS publish

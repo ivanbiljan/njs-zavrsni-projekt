@@ -1,5 +1,28 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-secondary);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+
+  &.error {
+    color: var(--danger);
+  }
+}
+
 .input {
   font-weight: 500;
+
+  position: relative;
 
   display: flex;
   flex-direction: row;
@@ -15,7 +38,34 @@
   border: 0;
   border-radius: 8px;
 
-  &:focus, &:focus-visible {
+  &.error {
+    outline: 2px solid var(--danger);
+  }
+
+  &:focus-within {
     outline: 2px solid var(--brand-primary);
   }
+
+  input {
+    height: 100%;
+
+    border: 0;
+    border-radius: 8px;
+    background: #F3F3F5;
+
+    &:focus, &:focus-visible {
+      outline: 0;
+    }
+  }
+}
+
+.icon-right {
+  position: absolute;
+  right: 10px;
+
+  cursor: pointer;
+}
+
+.feedback {
+  color: var(--danger);
 }

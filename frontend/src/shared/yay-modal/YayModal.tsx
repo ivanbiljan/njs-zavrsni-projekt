@@ -1,5 +1,5 @@
 import React from "react";
-import CloseButton from "/src/assets/svgs/close-x-icon.svg";
+import CloseButton from "/frontend/src/assets/svgs/close-x-icon.svg";
 import "./YayModal.scss";
 import YayButton from "../yay-button/YayButton";
 import { useDispatch } from "react-redux";

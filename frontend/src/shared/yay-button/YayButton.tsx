@@ -5,9 +5,9 @@ import LoaderDefault from "/src/assets/images/loader.png";
 import LoaderWhite from "/src/assets/images/loader-white.png";
 
 export interface ButtonProps {
-    onClick: () => void;
     text: string;
     color: "purple" | "white";
+    onClick?: () => void;
     icon?: JSX.Element;
     htmlType?: "button" | "submit";
     size?: "large" | undefined;
@@ -19,6 +19,10 @@ export interface ButtonProps {
 const YayButton: React.FC<ButtonProps> = (props: ButtonProps) => {
     const { onClick, icon, text, color, htmlType, size, className, disabled, loading } = props;
     const onClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        if (!onClick) {
+            return;
+        }
+
         if (disabled || loading) {
             e.preventDefault();
 

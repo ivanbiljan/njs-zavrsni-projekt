@@ -32,7 +32,7 @@ const FooterSection = (props: FooterSectionProps) => {
 const Footer = () => {
     return (
         <footer
-            className={"absolute bottom-0 left-0 right-0 w-100 xl:max-h-[512px] bg-black px-[20px] py-[80px] lg:px-[135px] lg:py-[120px]"}>
+            className={"absolute bottom-0 left-0 right-0 w-100 xl:max-h-[512px] bg-black px-[20px] py-[80px] lg:px-[135px] lg:py-[100px]"}>
             <div className={"flex flex-col justify-evenly items-start gap-16"}>
                 <div className={"w-[100%] flex flex-wrap flex-row justify-between items-baseline gap-4"}>
                     <div className={"flex flex-col gap-4"}>
