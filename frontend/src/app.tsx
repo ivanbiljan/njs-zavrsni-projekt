@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import {Home, Route as HomeRoute} from "./home/Home";
 import { YayModalContainer } from "./shared/yay-modal/YayModalContainer";
-import Login, { Route as LoginRoute } from "./login";
-import Register, { Route as RegisterRoute } from "./register";
+import {Login, LoginRoute, Register, RegisterRoute} from "./authentication";
 
 const App = () => {
     return (

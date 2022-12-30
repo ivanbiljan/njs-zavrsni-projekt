@@ -1,0 +1,12 @@
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.csproj.AssemblyReference.cache
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.AssemblyInfoInputs.cache
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.AssemblyInfo.cs
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.csproj.CoreCompileInputs.cache
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\bin\Debug\net6.0\Njs.Core.deps.json
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\bin\Debug\net6.0\Njs.Core.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\bin\Debug\net6.0\Njs.Core.pdb
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\refint\Njs.Core.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\Njs.Core.pdb
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net6.0\ref\Njs.Core.dll
