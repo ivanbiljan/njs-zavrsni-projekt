@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace Njs.Core.Shared.Multitenancy;
+namespace Njs.Core.Infrastructure.Multitenancy;
 
 public sealed class RequestHeaderTenantProvider : ITenantProvider
 {

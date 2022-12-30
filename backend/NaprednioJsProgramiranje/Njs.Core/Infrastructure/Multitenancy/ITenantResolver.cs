@@ -1,4 +1,4 @@
-﻿namespace Njs.Core.Shared.Multitenancy;
+﻿namespace Njs.Core.Infrastructure.Multitenancy;
 
 /// <summary>
 /// Defines a contract that describes a service that resolves the current tenant from a collection of <see cref="ITenantProvider"/>s.

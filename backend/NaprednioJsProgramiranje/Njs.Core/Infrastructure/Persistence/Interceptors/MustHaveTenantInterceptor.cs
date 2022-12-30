@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.VisualBasic;
 using Njs.Core.Infrastructure.Data;
-using Njs.Core.Shared.Multitenancy;
+using Njs.Core.Infrastructure.Multitenancy;
 
 namespace Njs.Core.Infrastructure.Persistence.Interceptors;
 

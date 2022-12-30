@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Njs.Core.Shared.Multitenancy;
+namespace Njs.Core.Infrastructure.Multitenancy;
 
 internal sealed class TenantResolver : ITenantResolver
 {

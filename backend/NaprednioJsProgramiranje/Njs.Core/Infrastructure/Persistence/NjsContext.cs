@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Njs.Core.Infrastructure.Data;
 using Njs.Core.Infrastructure.Persistence.Interceptors;
-using Njs.Core.Shared.Multitenancy;
+using Njs.Core.Infrastructure.Multitenancy;
 
 namespace Njs.Core.Infrastructure.Persistence;
 

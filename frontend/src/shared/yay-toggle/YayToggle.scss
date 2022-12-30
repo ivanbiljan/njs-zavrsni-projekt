@@ -21,7 +21,7 @@
 }
 
 .slider:before {
-  background-color: #fff;
+  background-color: var(--icon-descriptive);
   bottom: 2px;
   content: "";
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10' fill='none'%3E%3Cpath d='M0.999647 1.00026L5.00081 5.00153M9.00049 9L5.00081 5.00153M5.00081 5.00153L9.00043 1.00004M5.00081 5.00153L1.00049 9' stroke='%2369788E' stroke-opacity='0.6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");

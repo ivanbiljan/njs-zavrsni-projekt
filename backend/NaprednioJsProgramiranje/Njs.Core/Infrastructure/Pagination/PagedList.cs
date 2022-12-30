@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Njs.Core.Infrastructure.Pagination;
 
-public class PagedList<T>
+public class PaginatedList<T>
 {
-    public PagedList(int totalCount, List<T> items)
+    public PaginatedList(int totalCount, List<T> items)
     {
         TotalCount = totalCount;
         Items = items;
@@ -18,9 +18,9 @@ public class PagedList<T>
     public int TotalCount { get; }
 }
 
-public static class PagedListExtensions
+public static class PaginatedListExtensions
 {
-    public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> query, PaginatedRequestBase request)
+    public static async Task<PaginatedList<T>> ToPaginatedListAsync<T>(this IQueryable<T> query, PaginatedRequestBase request)
         where T : class
     {
         var totalCount = query.Count();
@@ -31,7 +31,7 @@ public static class PagedListExtensions
             .Take(request.PageSize)
             .ToListAsync();
 
-        return new PagedList<T>(totalCount, data);
+        return new PaginatedList<T>(totalCount, data);
     }
 
     private static IOrderedQueryable<T> ApplySorter<T>(IQueryable<T> source, SortCriterion sortCriterion)

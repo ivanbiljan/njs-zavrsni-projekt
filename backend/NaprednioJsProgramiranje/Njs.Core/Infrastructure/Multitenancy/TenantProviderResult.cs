@@ -1,4 +1,4 @@
-﻿namespace Njs.Core.Shared.Multitenancy;
+﻿namespace Njs.Core.Infrastructure.Multitenancy;
 
 /// <summary>
 /// Represents the result of a <see cref="ITenantProvider"/>. 
