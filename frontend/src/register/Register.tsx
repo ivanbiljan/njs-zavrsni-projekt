@@ -5,6 +5,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import {Route as LoginRoute} from "./../login";
+import { YayToggle } from "./../shared/yay-toggle/YayToggle";
 
 export const Route = "/register";
 
@@ -22,6 +23,7 @@ export const Register = () => {
 
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: "onBlur",
+        reValidateMode: "onBlur",
         resolver: yupResolver(validationSchema)
     });
 
@@ -38,7 +40,7 @@ export const Register = () => {
             <YayInput type={"text"} readOnly={false} label={"Last name"} error={(errors.lastName && errors.lastName.message) ? errors.lastName.message.toString() : ""} {...register("lastName")} />
             <YayInput type={"password"} readOnly={false} label={"Password"} error={(errors.password && errors.password.message) ? errors.password.message.toString() : ""} {...register("password") }/>
             <YayInput type={"password"} readOnly={false} label={"Confirm password"} error={(errors.confirmPassword && errors.confirmPassword.message) ? errors.confirmPassword.message.toString() : ""} {...register("confirmPassword") }/>
-            <YayButton htmlType={"submit"} text={"Login"} color={"purple"} className={"justify-self-end"} />
+            <YayButton htmlType={"submit"} text={"Register"} color={"purple"} className={"md: w-[240px]"} />
         </form>
     );
 };
