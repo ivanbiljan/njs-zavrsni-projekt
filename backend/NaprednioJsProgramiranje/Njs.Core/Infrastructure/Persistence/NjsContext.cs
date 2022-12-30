@@ -22,6 +22,8 @@ public sealed class NjsContext : DbContext
 
     public DbSet<User> Users => Set<User>();
 
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+
     public Task<int> SaveAsync(CancellationToken cancellationToken) => SaveChangesAsync(cancellationToken);
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
