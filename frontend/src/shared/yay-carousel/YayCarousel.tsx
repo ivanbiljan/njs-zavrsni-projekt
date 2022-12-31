@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDimensions } from "./../hooks/useDimensions";
+import BackwardButton from "./../../assets/svgs/carousel-backward.svg";
 import ForwardButton from "./../../assets/svgs/carousel-forward.svg";
 import classNames from "classnames";
 
@@ -46,7 +47,7 @@ export const YayCarousel = (props: YayCarouselProps) => {
                     <div
                         className={classNames(navigationButtonClasses, activePage === 0 ? "hidden" : "")}
                         onClick={handlePreviousPage}>
-                        <ForwardButton />
+                        <BackwardButton />
                     </div>
                     <div
                         className={classNames(navigationButtonClasses, "right-[-30px]", activePage >= maxPages ? "hidden" : "")}
