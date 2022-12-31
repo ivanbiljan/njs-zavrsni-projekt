@@ -35,7 +35,7 @@ public sealed class RegisterUserCommand : IRequestHandler<RegisterUserRequest, R
 
         if (user is not null)
         {
-            throw new BadRequestException("User already exists");
+            throw new NjsException("User already exists");
         }
 
         var parsedPhoneNumber = PhoneNumberUtil.Parse(request.PhoneNumber, Constants.DefaultPhoneRegion);

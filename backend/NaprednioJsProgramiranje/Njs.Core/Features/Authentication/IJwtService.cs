@@ -35,17 +35,17 @@ internal sealed class JwtService : IJwtService
 
         if (refreshToken is null)
         {
-            throw new BadRequestException("Invalid token");
+            throw new NjsException("Invalid token");
         }
 
         if (!refreshToken.IsRevoked)
         {
-            throw new BadRequestException("The token has been revoked");
+            throw new NjsException("The token has been revoked");
         }
 
         if (!refreshToken.IsActive)
         {
-            throw new BadRequestException("This token has expired");
+            throw new NjsException("This token has expired");
         }
 
         refreshToken.ArchivedAtUtc = DateTime.UtcNow;
@@ -67,23 +67,23 @@ internal sealed class JwtService : IJwtService
 
         if (refreshToken == null)
         {
-            throw new BadRequestException("Invalid token");
+            throw new NjsException("Invalid token");
         }
 
         var ownerId = int.Parse(_currentUserService.UserId!);
         if (refreshToken.Owner.Id != ownerId)
         {
-            throw new BadRequestException("Refresh token does not belong to this user");
+            throw new NjsException("Refresh token does not belong to this user");
         }
 
         if (!refreshToken.IsActive)
         {
-            throw new BadRequestException("The token has expired");
+            throw new NjsException("The token has expired");
         }
 
         if (!refreshToken.IsRevoked)
         {
-            throw new BadRequestException("This token has been revoked");
+            throw new NjsException("This token has been revoked");
         }
 
         return await CreateTokenAsync(ownerId);

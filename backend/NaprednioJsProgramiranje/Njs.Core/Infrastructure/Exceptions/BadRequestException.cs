@@ -1,12 +1,12 @@
 ﻿namespace Njs.Core.Infrastructure.Exceptions;
 
-public sealed class BadRequestException : Exception
+public sealed class NjsException : Exception
 {
-    public BadRequestException(string message) : base(message)
+    public NjsException(string message) : base(message)
     {
     }
     
-    public BadRequestException(string message, Exception? innerException) : base(message, innerException)
+    public NjsException(string message, Exception? innerException) : base(message, innerException)
     {
     }
 }

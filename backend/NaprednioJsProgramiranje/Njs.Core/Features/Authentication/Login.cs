@@ -31,7 +31,7 @@ public sealed class LoginCommand : IRequestHandler<LoginUserRequest, LoginUserRe
 
         if (user == null)
         {
-            throw new BadRequestException("User does not exist");
+            throw new NjsException("User does not exist");
         }
 
         // if (user.ActivationTime is null)
@@ -41,7 +41,7 @@ public sealed class LoginCommand : IRequestHandler<LoginUserRequest, LoginUserRe
 
         if (!_passwordHasher.VerifyPassword(request.Password, user.HashedPassword))
         {
-            throw new BadRequestException("Invalid password");
+            throw new NjsException("Invalid password");
         }
 
         var (accessToken, refreshToken) = await _jwtService.CreateTokenAsync(user.Id);
