@@ -1,0 +1,39 @@
+.card {
+  width: 270px;
+  height: 264px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  padding: 12px;
+
+  background-color: var(--background-secondary);
+
+  h5 {
+    margin-top: 4px;
+  }
+
+  p {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+
+  .logo {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 246px;
+    height: 153px;
+
+    border-radius: 16px;
+
+    background-color: var(--background-primary);
+  }
+}

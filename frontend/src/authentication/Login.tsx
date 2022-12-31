@@ -1,5 +1,5 @@
-import YayInput from "@shared/yay-input/YayInput";
-import YayButton from "@shared/yay-button/YayButton";
+import YayInput from "./../shared/yay-input/YayInput";
+import YayButton from "./../shared/yay-button/YayButton";
 import { useForm } from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as Yup from "yup";
