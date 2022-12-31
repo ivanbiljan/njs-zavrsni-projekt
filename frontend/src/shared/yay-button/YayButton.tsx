@@ -5,8 +5,8 @@ import LoaderDefault from "/src/assets/images/loader.png";
 import LoaderWhite from "/src/assets/images/loader-white.png";
 
 export interface ButtonProps {
-    text: string;
     color: "purple" | "white";
+    text?: string;
     onClick?: () => void;
     icon?: JSX.Element;
     htmlType?: "button" | "submit";
@@ -49,7 +49,9 @@ const YayButton: React.FC<ButtonProps> = (props: ButtonProps) => {
                     {icon}
                 </div>
             }
-            <div className={"btn-text"}>{text}</div>
+            {text &&
+                <div className={"btn-text"}>{text}</div>
+            }
         </button>
     );
 };
