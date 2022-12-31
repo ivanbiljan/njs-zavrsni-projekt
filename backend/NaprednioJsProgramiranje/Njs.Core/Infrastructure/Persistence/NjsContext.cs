@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Njs.Core.Features.Authentication;
 using Njs.Core.Infrastructure.Data;
 using Njs.Core.Infrastructure.Persistence.Interceptors;
 using Njs.Core.Infrastructure.Multitenancy;
@@ -11,12 +12,13 @@ public sealed class NjsContext : DbContext
 {
     private readonly ITenantResolver _tenantResolver;
     private readonly string _tenantId;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public NjsContext(DbContextOptions<NjsContext> options, ITenantResolver tenantResolver) : base(options)
+    public NjsContext(DbContextOptions<NjsContext> options, ITenantResolver tenantResolver, IPasswordHasher passwordHasher) : base(options)
     {
         _tenantResolver = tenantResolver;
+        _passwordHasher = passwordHasher;
         
-        // TenantId can only be null in the case of an unauthorized call or a malicious attack
         _tenantId = tenantResolver.GetTenant().TenantId ?? Constants.InvalidTenantId;
     }
 
@@ -42,6 +44,8 @@ public sealed class NjsContext : DbContext
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(NjsContext).Assembly);
         ConfigureGlobalFilters(modelBuilder);
+        
+        DatabaseInitializer.SeedData(modelBuilder, _passwordHasher);
     }
 
     private void ConfigureGlobalFilters(ModelBuilder modelBuilder)
