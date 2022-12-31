@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Njs.Core.Features.Authentication;
 
@@ -6,6 +7,7 @@ namespace Njs.Controllers;
 
 [ApiController]
 [Route("api/auth")]
+[AllowAnonymous]
 public sealed class AuthenticationController : ControllerBase
 {
     private readonly IMediator _mediator;
