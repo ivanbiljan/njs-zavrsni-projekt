@@ -16,5 +16,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
             }).IsUnique();
         
         builder.Ignore(u => u.FullPhoneNumber);
+
+        builder.HasMany(u => u.RefreshTokens).WithOne(t => t.Owner).HasForeignKey(t => t.OwnerId);
     }
 }

@@ -11,6 +11,9 @@ internal static class DatabaseInitializer
         var users = new User[]
         {
             new("Administrator", "admin@tvz.hr", passwordHasher.Hash("admin"), "+385", "xx yyyy zzz")
+            {
+                Id = 1
+            }
         };
 
         modelBuilder.Entity<User>().HasData(users);

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Njs.Core.Infrastructure.Pagination;
 
-public class PaginatedList<T>
+public sealed class PaginatedList<T>
 {
     public PaginatedList(int totalCount, List<T> items)
     {

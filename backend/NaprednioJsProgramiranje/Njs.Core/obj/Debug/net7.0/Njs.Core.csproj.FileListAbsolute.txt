@@ -10,3 +10,5 @@ D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\n
 D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net7.0\refint\Njs.Core.dll
 D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net7.0\Njs.Core.pdb
 D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net7.0\ref\Njs.Core.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\bin\Debug\net7.0\Njs.Core.runtimeconfig.json
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs.Core\obj\Debug\net7.0\Njs.Core.genruntimeconfig.cache

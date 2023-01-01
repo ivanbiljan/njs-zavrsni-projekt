@@ -13,4 +13,6 @@ public sealed class Currency : EntityBase
     public string DecimalSeparator { get; }
     
     public string GroupSeparator { get; }
+
+    public ICollection<Store> Stores { get; private set; } = new List<Store>();
 }

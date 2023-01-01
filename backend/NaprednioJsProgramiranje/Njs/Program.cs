@@ -3,6 +3,8 @@ using Njs.Core;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddNjs(builder.Configuration, builder.Environment);
 
 builder.Services.AddControllers();

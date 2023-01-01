@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Njs.Core.Features.Authentication;
+using Njs.Core.Infrastructure;
+using Njs.Core.Infrastructure.Multitenancy;
 using Njs.Core.Infrastructure.Persistence;
 
 namespace Njs.Core;
@@ -14,13 +16,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddNjs(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
-        var connectionString = configuration.GetConnectionString(nameof(NjsContext));
         services.AddDbContext<NjsContext>(opts =>
         {
             if (environment.IsDevelopment())
             {
-                opts.UseInMemoryDatabase("InMemory");
-                
                 opts.EnableDetailedErrors();
                 opts.EnableSensitiveDataLogging();
                 opts.ConfigureWarnings(warnings =>
@@ -31,27 +30,25 @@ public static class DependencyInjection
                         CoreEventId.StartedTracking);
                 });
             }
-            else
+            
+            var connectionString = configuration.GetConnectionString(nameof(NjsContext));
+            opts.UseSqlServer(connectionString, sqlServerOptions =>
             {
-                opts.UseSqlServer(connectionString, sqlServerOptions =>
-                {
-                    // Performs up to 6 retries 30 seconds apart (19.8.2022.)
-                    sqlServerOptions.EnableRetryOnFailure();
-                });
-            }
+                // Performs up to 6 retries 30 seconds apart (19.8.2022.)
+                sqlServerOptions.EnableRetryOnFailure();
+            });
         });
 
-        services.AddScoped<NjsContext>(
-            provider =>
-            {
-                var context = provider.GetRequiredService<NjsContext>();
-                context.Database.EnsureCreated();
-
-                return context;
-            });
+        // services.AddHttpClient();
+        // services.AddHttpContextAccessor();
         
+        services.AddScoped<ICurrentUserService, ClaimsCurrentUserService>();
+
         services.AddScoped<IJwtFactory, JwtFactory>();
         services.AddScoped<IJwtService, JwtService>();
+
+        services.AddScoped<ITenantResolver, TenantResolver>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
 
         services.AddMediatR(Assembly.GetExecutingAssembly());
 

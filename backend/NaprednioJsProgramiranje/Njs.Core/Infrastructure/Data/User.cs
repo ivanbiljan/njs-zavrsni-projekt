@@ -2,6 +2,10 @@
 
 public sealed class User : AuditableEntityBase
 {
+    private User()
+    {
+    }
+    
     public User(string username, string email, string password, string countryCode, string localPhoneNumber)
     {
         Username = username;
@@ -28,4 +32,6 @@ public sealed class User : AuditableEntityBase
     public string FullPhoneNumber => $"{CountryCode} {LocalPhoneNumber}";
     
     public string HashedPassword { get; set; }
+
+    public ICollection<RefreshToken> RefreshTokens { get; private set; } = new List<RefreshToken>();
 }

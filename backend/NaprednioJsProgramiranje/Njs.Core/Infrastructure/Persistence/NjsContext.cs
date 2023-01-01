@@ -24,6 +24,18 @@ public sealed class NjsContext : DbContext
 
     public DbSet<User> Users => Set<User>();
 
+    public DbSet<Store> Stores => Set<Store>();
+    
+    public DbSet<Currency> Currencies => Set<Currency>();
+    
+    public DbSet<Category> Categories => Set<Category>();
+    
+    public DbSet<Product> Products => Set<Product>();
+    
+    public DbSet<Order> Orders => Set<Order>();
+    
+    public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     public Task<int> SaveAsync(CancellationToken cancellationToken) => SaveChangesAsync(cancellationToken);
@@ -38,13 +50,20 @@ public sealed class NjsContext : DbContext
         );
     }
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+
+        configurationBuilder.Properties<decimal>().HavePrecision(2);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(NjsContext).Assembly);
         ConfigureGlobalFilters(modelBuilder);
-        
+
         DatabaseInitializer.SeedData(modelBuilder, _passwordHasher);
     }
 

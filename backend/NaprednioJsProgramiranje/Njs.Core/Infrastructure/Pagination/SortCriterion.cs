@@ -1,6 +1,6 @@
 ﻿namespace Njs.Core.Infrastructure.Pagination;
 
-public class SortCriterion
+public sealed class SortCriterion
 {
     public SortCriterion(string sortColumn, SortDirection sortDirection)
     {
