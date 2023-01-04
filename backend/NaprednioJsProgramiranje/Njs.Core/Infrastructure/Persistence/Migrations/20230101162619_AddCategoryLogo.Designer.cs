@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Njs.Core.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using Njs.Core.Infrastructure.Persistence;
 namespace Njs.Core.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(NjsContext))]
-    partial class NjsContextModelSnapshot : ModelSnapshot
+    [Migration("20230101162619_AddCategoryLogo")]
+    partial class AddCategoryLogo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
