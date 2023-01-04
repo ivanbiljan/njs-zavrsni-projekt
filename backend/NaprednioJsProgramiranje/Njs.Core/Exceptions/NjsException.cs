@@ -1,4 +1,4 @@
-﻿namespace Njs.Core.Infrastructure.Exceptions;
+﻿namespace Njs.Core.Exceptions;
 
 public sealed class NjsException : Exception
 {
