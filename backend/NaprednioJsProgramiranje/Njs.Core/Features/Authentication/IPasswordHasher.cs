@@ -1,5 +1,5 @@
-﻿using Njs.Core.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Njs.Core.Entities;
 
 namespace Njs.Core.Features.Authentication;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Njs.Core.Infrastructure.Data;
+using Njs.Core.Entities;
 
 namespace Njs.Core.Infrastructure.Persistence.Interceptors;
 

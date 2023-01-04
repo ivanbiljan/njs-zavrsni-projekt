@@ -1,4 +1,4 @@
-﻿namespace Njs.Core.Infrastructure.Data;
+﻿namespace Njs.Core.Entities;
 
 /// <summary>
 /// Represents the base class for a database entity.

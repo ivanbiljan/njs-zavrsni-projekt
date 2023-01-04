@@ -1,4 +1,4 @@
-﻿namespace Njs.Core.Infrastructure.Data;
+﻿namespace Njs.Core.Entities;
 
 public sealed class Currency : EntityBase
 {

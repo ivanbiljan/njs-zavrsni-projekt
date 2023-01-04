@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace Njs.Core.Infrastructure.Data;
+﻿namespace Njs.Core.Entities;
 
 public sealed class Store : EntityBase, IMustHaveTenant
 {

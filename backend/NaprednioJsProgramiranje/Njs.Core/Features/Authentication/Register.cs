@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Njs.Core.Infrastructure.Data;
+using Njs.Core.Entities;
 using Njs.Core.Infrastructure.Exceptions;
 using Njs.Core.Infrastructure.Persistence;
 using PhoneNumbers;

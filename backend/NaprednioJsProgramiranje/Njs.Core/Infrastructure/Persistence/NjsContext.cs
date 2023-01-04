@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Njs.Core.Entities;
 using Njs.Core.Features.Authentication;
-using Njs.Core.Infrastructure.Data;
 using Njs.Core.Infrastructure.Persistence.Interceptors;
 using Njs.Core.Infrastructure.Multitenancy;
 

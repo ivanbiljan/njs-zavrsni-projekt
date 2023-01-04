@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Njs.Core.Entities;
 using Njs.Core.Infrastructure;
-using Njs.Core.Infrastructure.Data;
 using Njs.Core.Infrastructure.Exceptions;
 using Njs.Core.Infrastructure.Persistence;
 

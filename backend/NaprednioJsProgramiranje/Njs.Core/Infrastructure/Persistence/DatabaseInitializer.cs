@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Njs.Core.Entities;
 using Njs.Core.Features.Authentication;
-using Njs.Core.Infrastructure.Data;
 
 namespace Njs.Core.Infrastructure.Persistence;
 
