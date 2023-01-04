@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace Njs.Middlewares;
 
@@ -17,6 +19,13 @@ public class ErrorLoggingMiddleware
         try
         {
             await _next(context);
+        }
+        catch (ValidationException validationException)
+        {
+            var response = validationException.Errors.GroupBy(f => f.PropertyName)
+                .ToImmutableDictionary(g => g.Key, g => g.Select(f => f.ErrorMessage));
+
+            await WriteResponseAsync(HttpStatusCode.BadRequest, response);
         }
         catch (BadHttpRequestException gyroException)
         {

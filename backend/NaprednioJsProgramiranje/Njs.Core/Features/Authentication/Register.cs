@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using System.Text.RegularExpressions;
+using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Njs.Core.Entities;
-using Njs.Core.Infrastructure.Exceptions;
+using Njs.Core.Exceptions;
 using Njs.Core.Infrastructure.Persistence;
 using PhoneNumbers;
 
@@ -12,6 +14,22 @@ public record RegisterUserRequest
     string? LastName) : IRequest<RegisterUserResponse>;
 
 public record RegisterUserResponse;
+
+public sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUserRequest>
+{
+    private static readonly Regex EmailRegex = new(
+        "^(?(\")(\".+?(?<!\\\\)\"@)|(([0-9a-z]((\\.(?!\\.))|[-!#\\$%&'\\*\\+/=\\?\\^`\\{\\}\\|~\\w])*)(?<=[0-9a-z])@))(?(\\[)(\\[(\\d{1,3}\\.){3}\\d{1,3}\\])|(([0-9a-z][-\\w]*[0-9a-z]*\\.)+[a-z0-9][\\-a-z0-9]{0,22}[a-z0-9]))$");
+
+    public RegisterUserCommandValidator()
+    {
+        RuleFor(r => r.Email).NotEmpty().WithMessage("Email is empty").Matches(EmailRegex).WithMessage("Invalid email address");
+        RuleFor(r => r.Username).Cascade(CascadeMode.Stop).NotEmpty().WithMessage("Username is empty");
+        RuleFor(r => r.FirstName).NotEmpty().WithMessage("First name is empty");
+        RuleFor(r => r.LastName).NotEmpty().WithMessage("Last name is empty");
+        RuleFor(r => r.Password).NotEmpty().WithMessage("Password is empty").MinimumLength(6)
+            .WithMessage("Password must contain at least 6 characters");
+    }
+}
 
 public sealed class RegisterUserCommand : IRequestHandler<RegisterUserRequest, RegisterUserResponse>
 {

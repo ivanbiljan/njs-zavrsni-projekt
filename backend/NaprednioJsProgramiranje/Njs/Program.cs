@@ -1,4 +1,8 @@
+using System.Text.Json;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Njs.Core;
+using Njs.Core.Infrastructure.PipelineBehaviours;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddNjs(builder.Configuration, builder.Environment);
+
+builder.Services.AddMvcCore().AddJsonOptions(
+    options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+    });
+
+builder.Services.AddValidatorsFromAssembly(typeof(ValidationBehaviour<,>).Assembly);
+builder.Services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true).AddFluentValidationClientsideAdapters();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

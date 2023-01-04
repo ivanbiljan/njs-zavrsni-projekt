@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Njs.Core.Infrastructure.Exceptions;
+using Njs.Core.Exceptions;
 using Njs.Core.Infrastructure.Persistence;
 
 namespace Njs.Core.Features.Authentication;

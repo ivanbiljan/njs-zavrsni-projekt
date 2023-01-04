@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using Njs.Core.Entities;
+using Njs.Core.Exceptions;
 using Njs.Core.Infrastructure;
-using Njs.Core.Infrastructure.Exceptions;
 using Njs.Core.Infrastructure.Persistence;
 
 namespace Njs.Core.Features.Authentication;

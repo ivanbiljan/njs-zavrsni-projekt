@@ -86,3 +86,6 @@ D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0
 D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0\System.CodeDom.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0\FluentValidation.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+D:\Source\Repos\yaymoments\backend\NaprednioJsProgramiranje\Njs\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
