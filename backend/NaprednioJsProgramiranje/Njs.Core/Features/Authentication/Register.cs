@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Njs.Core.Entities;
@@ -48,15 +49,31 @@ public sealed class RegisterUserCommand : IRequestHandler<RegisterUserRequest, R
     {
         var user = await _db.Users
             .AsNoTracking()
-            .Where(u => u.Email == request.Email)
+            .Where(u => u.Email == request.Email || u.Username == request.Username)
             .SingleOrDefaultAsync(cancellationToken);
-
+        
         if (user is not null)
         {
-            throw new NjsException("User already exists");
+            // Maybe?
+            var validationErrors = new List<ValidationFailure>();
+            if (user.Email == request.Email)
+            {
+                validationErrors.Add(new ValidationFailure(nameof(request.Email), "This email is already taken"));
+            }
+            
+            if (user.Username == request.Username)
+            {
+                validationErrors.Add(new ValidationFailure(nameof(request.Username), "This username is already taken"));
+            }
+
+            throw new ValidationException(validationErrors);
         }
 
         var parsedPhoneNumber = PhoneNumberUtil.Parse(request.PhoneNumber, Constants.DefaultPhoneRegion);
+        if (parsedPhoneNumber is null)
+        {
+            throw new ValidationException("This is not a valid phone number");
+        }
         
         var hashedPassword = _passwordHasher.Hash(request.Password);
         

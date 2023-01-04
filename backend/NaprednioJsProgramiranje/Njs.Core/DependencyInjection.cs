@@ -32,11 +32,12 @@ public static class DependencyInjection
             }
             
             var connectionString = configuration.GetConnectionString(nameof(NjsContext));
-            opts.UseSqlServer(connectionString, sqlServerOptions =>
-            {
-                // Performs up to 6 retries 30 seconds apart (19.8.2022.)
-                sqlServerOptions.EnableRetryOnFailure();
-            });
+            // opts.UseSqlServer(connectionString, sqlServerOptions =>
+            // {
+            //     // Performs up to 6 retries 30 seconds apart (19.8.2022.)
+            //     sqlServerOptions.EnableRetryOnFailure();
+            // });
+            opts.UseInMemoryDatabase("Balls");
         });
 
         // services.AddHttpClient();
