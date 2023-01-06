@@ -9,6 +9,7 @@ using Njs.Core.Features.Authentication;
 using Njs.Core.Infrastructure;
 using Njs.Core.Infrastructure.Multitenancy;
 using Njs.Core.Infrastructure.Persistence;
+using Njs.Core.Infrastructure.PipelineBehaviours;
 
 namespace Njs.Core;
 
@@ -32,17 +33,15 @@ public static class DependencyInjection
             }
             
             var connectionString = configuration.GetConnectionString(nameof(NjsContext));
-            // opts.UseSqlServer(connectionString, sqlServerOptions =>
-            // {
-            //     // Performs up to 6 retries 30 seconds apart (19.8.2022.)
-            //     sqlServerOptions.EnableRetryOnFailure();
-            // });
-            opts.UseInMemoryDatabase("Balls");
+            opts.UseSqlServer(
+                connectionString,
+                sqlServerOptions =>
+                {
+                    // Performs up to 6 retries 30 seconds apart (19.8.2022.)
+                    sqlServerOptions.EnableRetryOnFailure();
+                });
         });
 
-        // services.AddHttpClient();
-        // services.AddHttpContextAccessor();
-        
         services.AddScoped<ICurrentUserService, ClaimsCurrentUserService>();
 
         services.AddScoped<IJwtFactory, JwtFactory>();
@@ -51,6 +50,7 @@ public static class DependencyInjection
         services.AddScoped<ITenantResolver, TenantResolver>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
 
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddMediatR(Assembly.GetExecutingAssembly());
 
         return services;

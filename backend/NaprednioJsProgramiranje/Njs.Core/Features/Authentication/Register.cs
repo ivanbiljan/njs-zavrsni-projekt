@@ -51,6 +51,8 @@ public sealed class RegisterUserCommand : IRequestHandler<RegisterUserRequest, R
             .AsNoTracking()
             .Where(u => u.Email == request.Email || u.Username == request.Username)
             .SingleOrDefaultAsync(cancellationToken);
+
+        var categories = _db.Users.ToList();
         
         if (user is not null)
         {
@@ -69,12 +71,17 @@ public sealed class RegisterUserCommand : IRequestHandler<RegisterUserRequest, R
             throw new ValidationException(validationErrors);
         }
 
-        var parsedPhoneNumber = PhoneNumberUtil.Parse(request.PhoneNumber, Constants.DefaultPhoneRegion);
-        if (parsedPhoneNumber is null)
+        PhoneNumber parsedPhoneNumber;
+
+        try
         {
-            throw new ValidationException("This is not a valid phone number");
+            parsedPhoneNumber = PhoneNumberUtil.Parse(request.PhoneNumber, Constants.DefaultPhoneRegion);
         }
-        
+        catch
+        {
+            throw new ValidationException("This is not a valid phone number");   
+        }
+
         var hashedPassword = _passwordHasher.Hash(request.Password);
         
         var newUser = new User(

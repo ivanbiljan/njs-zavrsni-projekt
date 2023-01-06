@@ -3,6 +3,7 @@ import {Home, Route as HomeRoute} from "./home/Home";
 import { YayModalContainer } from "./shared/yay-modal/YayModalContainer";
 import {Login, LoginRoute, Register, RegisterRoute} from "./authentication";
 
+
 const App = () => {
     return (
         <div className={"app"}>

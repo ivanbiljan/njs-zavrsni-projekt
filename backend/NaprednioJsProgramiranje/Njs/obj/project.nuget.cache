@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Kza8nkfizn75vodZ22GiyeGdT8mkBzugcIKhiPgrxbx41h7qWnOn7puTcEg3nvFCTov03op8yRrJ2XF1wEvpFA==",
+  "dgSpecHash": "XcQLDa7X5rL4uyL5ZlF4byfxNfJJwCqL6lCpIXbDCQ4TNGwWNxhVbNhpO1FeFclSdtcRGKlwzZW7XFtIuakZjA==",
   "success": true,
   "projectFilePath": "D:\\Source\\Repos\\yaymoments\\backend\\NaprednioJsProgramiranje\\Njs\\Njs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Ivan\\.nuget\\packages\\bogus\\34.0.2\\bogus.34.0.2.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.4.0\\fluentvalidation.dependencyinjectionextensions.11.4.0.nupkg.sha512",

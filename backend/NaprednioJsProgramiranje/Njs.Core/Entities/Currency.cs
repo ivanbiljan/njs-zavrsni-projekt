@@ -2,17 +2,17 @@
 
 public sealed class Currency : EntityBase
 {
-    public string Code { get; }
+    public string Code { get; init; }
     
-    public string Sign { get; }
+    public string Sign { get; init; }
     
-    public int Formatting { get; }
+    public int Formatting { get; init; }
     
-    public int DecimalPlaces { get; }
+    public int DecimalPlaces { get; init; }
     
-    public string DecimalSeparator { get; }
+    public string DecimalSeparator { get; init; }
     
-    public string GroupSeparator { get; }
+    public string GroupSeparator { get; init; }
 
-    public ICollection<Store> Stores { get; private set; } = new List<Store>();
+    public ICollection<Store> Stores { get; init; } = new List<Store>();
 }

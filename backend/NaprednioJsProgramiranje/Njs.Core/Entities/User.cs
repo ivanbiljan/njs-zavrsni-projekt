@@ -33,5 +33,5 @@ public sealed class User : AuditableEntityBase
     
     public string HashedPassword { get; set; }
 
-    public ICollection<RefreshToken> RefreshTokens { get; private set; } = new List<RefreshToken>();
+    public ICollection<RefreshToken> RefreshTokens { get; init; } = new List<RefreshToken>();
 }

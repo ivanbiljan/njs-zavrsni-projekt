@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using Njs.Core.Exceptions;
 using ValidationException = FluentValidation.ValidationException;
 
 namespace Njs.Middlewares;
@@ -25,21 +26,31 @@ public class ErrorLoggingMiddleware
             var response = validationException.Errors.GroupBy(f => f.PropertyName)
                 .ToImmutableDictionary(g => g.Key, g => g.Select(f => f.ErrorMessage));
 
-            await WriteResponseAsync(HttpStatusCode.BadRequest, response);
+            await WriteResponseAsync(HttpStatusCode.BadRequest, "One ore more validation exceptions occured", response);
         }
-        catch (BadHttpRequestException gyroException)
+        catch (NjsException gyroException)
         {
-            await WriteResponseAsync(HttpStatusCode.BadRequest, gyroException.Message);
+            await WriteResponseAsync(HttpStatusCode.BadRequest, gyroException.Message, gyroException.Errors);
         }
         catch (Exception ex)
         {
-            await WriteResponseAsync(HttpStatusCode.InternalServerError, ex.Message);
+            await WriteResponseAsync(
+                HttpStatusCode.InternalServerError,
+                "An unknown error occured",
+                ImmutableDictionary<string, IEnumerable<string>>.Empty);
         }
 
-        async Task WriteResponseAsync(HttpStatusCode statusCode, object value)
+        async Task WriteResponseAsync(HttpStatusCode statusCode, string title, IDictionary<string, IEnumerable<string>> errors)
         {
             context.Response.StatusCode = (int)statusCode;
-            await context.Response.WriteAsJsonAsync(value);
+
+            var content = new
+            {
+                title,
+                errors
+            };
+            
+            await context.Response.WriteAsJsonAsync(content);
         }
     }
 }
