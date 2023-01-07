@@ -48,6 +48,8 @@ lerna-debug.log*
 
 # Backend
 
+/**/bin
+/**/obj
 *.iobj
 *.pch
 *.pdb
