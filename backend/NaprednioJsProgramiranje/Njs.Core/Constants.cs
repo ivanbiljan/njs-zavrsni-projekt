@@ -6,6 +6,8 @@ public static class Constants
 
     public const string DefaultPhoneRegion = "HR";
 
+    public const int DefaultPageSize = 20;
+
     public static class Claims
     {
         public const string Sid = nameof(Sid);

@@ -2,7 +2,7 @@
 
 public interface IPageable
 { 
-    int PageNumber { get; init; }
+    int? PageNumber { get; init; }
     
-    int PageSize { get; init; }
+    int? PageSize { get; init; }
 }

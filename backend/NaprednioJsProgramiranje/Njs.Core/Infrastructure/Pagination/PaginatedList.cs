@@ -4,10 +4,10 @@ namespace Njs.Core.Infrastructure.Pagination;
 
 public sealed class PaginatedList<T>
 {
-    public PaginatedList(int currentPage, int totalCount, List<T> items)
+    public PaginatedList(int currentPage, int pageSize, int totalCount, List<T> items)
     {
         CurrentPage = currentPage;
-        MaxPages = (int)Math.Ceiling((decimal)totalCount / items.Count);
+        MaxPages = (int)Math.Ceiling((decimal)totalCount / pageSize);
         TotalCount = totalCount;
         Items = items;
     }
@@ -30,13 +30,16 @@ public static class PaginatedListExtensions
     public static async Task<PaginatedList<T>> ToPaginatedListAsync<T>(this IQueryable<T> query, IPageable request)
         where T : class
     {
+        var pageNumber = request.PageNumber ?? 1;
+        var pageSize = request.PageSize ?? Constants.DefaultPageSize;
+        
         var totalCount = query.Count();
 
         var data = await query
-            .Skip((request.PageNumber - 1) * request.PageSize)
-            .Take(request.PageSize)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
 
-        return new PaginatedList<T>(request.PageNumber, totalCount, data);
+        return new PaginatedList<T>(pageNumber, pageSize, totalCount, data);
     }
 }

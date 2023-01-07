@@ -77,12 +77,12 @@ internal static class DatabaseInitializer
         modelBuilder.Entity<Category>().HasData(categories.GenerateBetween(10, 10));
 
         var productId = 1;
-        var products = new Faker<Product>()
+        var productFakerSpecification = new Faker<Product>()
             .RuleFor(p => p.Id, f => productId++)
             .RuleFor(p => p.StoreId, f => Random.Shared.Next(1, 3))
             .RuleFor(p => p.Title, f => f.Commerce.ProductName())
             .RuleFor(p => p.Description, f => f.Commerce.ProductDescription());
 
-        modelBuilder.Entity<Product>().HasData(products.GenerateBetween(50, 150));
+        modelBuilder.Entity<Product>().HasData(productFakerSpecification.GenerateBetween(50, 150));
     }
 }
