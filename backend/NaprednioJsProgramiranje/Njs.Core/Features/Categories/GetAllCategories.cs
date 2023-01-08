@@ -15,7 +15,7 @@ public sealed class GetAllCategoriesQuery : IRequestHandler<GetAllCategoriesRequ
 {
     private readonly NjsContext _db;
 
-    public GetAllCategoriesQuery(NjsContext db, ITenantResolver tenantResolver)
+    public GetAllCategoriesQuery(NjsContext db)
     {
         _db = db;
     }

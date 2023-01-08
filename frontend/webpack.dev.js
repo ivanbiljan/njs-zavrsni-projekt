@@ -18,7 +18,8 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
             process: {
                 env: {
-                    BE_ENV: JSON.stringify(process.env.BE_ENV || "local"),
+                    BE_ENV: JSON.stringify(process.env.BE_ENV || "localhost"),
+                    BE_PORT: JSON.stringify(process.env.BE_PORT || 7175),
                 },
             },
         }),

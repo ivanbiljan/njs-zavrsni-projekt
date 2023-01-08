@@ -16,11 +16,13 @@ export interface YayAxiosRequestConfig<D = any> extends AxiosRequestConfig<D> {
     errorMessage?: string;
 }
 
-if (process.env.BE_ENV === "localhost") {
-    axios.defaults.baseURL = `https://localhost:${process.env.BE_PORT}`;
-} else {
-    axios.defaults.baseURL = ""; // production
-}
+// if (process.env.BE_ENV === "localhost") {
+//     axios.defaults.baseURL = `https://localhost:${process.env.BE_PORT}`;
+// } else {
+//     axios.defaults.baseURL = ""; // production
+// }
+
+axios.defaults.baseURL = `https://localhost:${process.env.BE_PORT}`;
 
 // Add a request interceptor
 axios.interceptors.request.use(
