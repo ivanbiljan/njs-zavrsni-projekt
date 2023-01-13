@@ -1,6 +1,9 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query;
 using Njs.Core.Entities;
 using Njs.Core.Features.Authentication;
 using Njs.Core.Infrastructure.Persistence.Interceptors;
@@ -88,7 +91,7 @@ public sealed class NjsContext : DbContext
                 Expression.Lambda(Expression.Equal(tenantId, Expression.Constant(_tenantId)),
                     entity);
 
-            entityType.SetQueryFilter(filter);
+            AddFilter(entityType, filter);
         }
 
         void ConfigureArchivedFilter(IMutableEntityType entityType)
@@ -104,7 +107,33 @@ public sealed class NjsContext : DbContext
                 Expression.Lambda(Expression.Equal(archiveDate, Expression.Constant(null)),
                     entity);
 
-            entityType.SetQueryFilter(filter);
+            AddFilter(entityType, filter);
+        }
+        
+        void AddFilter(IMutableEntityType entityType, LambdaExpression expression)
+        {
+            var entityClrTypeExpression = Expression.Parameter(entityType.ClrType);
+
+            var filter = ReplacingExpressionVisitor.Replace(
+                expression.Parameters.Single(),
+                entityClrTypeExpression,
+                expression.Body);
+
+            var oldFilterLambda = entityType.GetQueryFilter();
+                
+            if (oldFilterLambda != null)
+            {
+                var oldFilter = ReplacingExpressionVisitor.Replace(
+                    oldFilterLambda.Parameters.Single(),
+                    entityClrTypeExpression,
+                    oldFilterLambda.Body);
+
+                filter = Expression.AndAlso(filter, oldFilter);
+            }
+
+            var lambdaExpression = Expression.Lambda(filter, entityClrTypeExpression);
+            entityType.SetQueryFilter(lambdaExpression);
+            Console.WriteLine(lambdaExpression);
         }
     }
 }

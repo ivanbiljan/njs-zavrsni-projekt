@@ -26,7 +26,7 @@ public class ErrorLoggingMiddleware
             var response = validationException.Errors.GroupBy(f => f.PropertyName)
                 .ToImmutableDictionary(g => g.Key, g => g.Select(f => f.ErrorMessage));
 
-            await WriteResponseAsync(HttpStatusCode.BadRequest, "One ore more validation exceptions occured", response);
+            await WriteResponseAsync(HttpStatusCode.BadRequest, validationException.Message, response);
         }
         catch (NjsException gyroException)
         {
