@@ -1,25 +1,26 @@
-import { RefObject, useCallback, useEffect, useState } from "react";
+import { RefObject, useCallback, useLayoutEffect, useRef, useState } from "react";
 
 export const useDimensions = (objectRef: RefObject<any>) => {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
 
-    const updateDimensions = useCallback(() => {
-        setWidth(objectRef.current.offsetWidth);
-        setHeight(objectRef.current.offsetHeight);
-    }, [objectRef]);
-
-    useEffect(() => {
-        if (objectRef.current) {
-            updateDimensions();
+    const observerRef = useRef<ResizeObserver>(new ResizeObserver(entries => {
+        for (let entry of entries) {
+            setWidth(entry.contentRect.width);
+            setHeight(entry.contentRect.height);
         }
+    }));
 
-        window.addEventListener("resize", updateDimensions);
+    useLayoutEffect(() => {
+            if (objectRef.current) {
+                observerRef.current.observe(objectRef.current);
 
-        return () => {
-            window.removeEventListener("resize", updateDimensions);
-        }
-    }, [objectRef])
+                return () => {
+                    observerRef.current.disconnect();
+                };
+            }
+        },
+        [objectRef, objectRef.current]);
 
-    return {width, height};
-}
+    return { width, height };
+};
