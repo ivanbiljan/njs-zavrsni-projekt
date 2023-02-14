@@ -1,4 +1,7 @@
-﻿namespace Njs.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Njs.Core.Entities;
 
 public sealed class User : AuditableEntityBase
 {
@@ -34,4 +37,21 @@ public sealed class User : AuditableEntityBase
     public string HashedPassword { get; set; }
 
     public ICollection<RefreshToken> RefreshTokens { get; init; } = new List<RefreshToken>();
+}
+
+internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
+{
+    public void Configure(EntityTypeBuilder<User> builder)
+    {
+        builder.HasIndex(
+            u => new
+            {
+                u.Email,
+                u.Username
+            }).IsUnique();
+        
+        builder.Ignore(u => u.FullPhoneNumber);
+
+        builder.HasMany(u => u.RefreshTokens).WithOne(t => t.Owner).HasForeignKey(t => t.OwnerId);
+    }
 }

@@ -1,4 +1,7 @@
-﻿namespace Njs.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Njs.Core.Entities;
 
 public sealed class Store : EntityBase, IMustHaveTenant
 {
@@ -13,4 +16,13 @@ public sealed class Store : EntityBase, IMustHaveTenant
     public Currency Currency { get; init; }
 
     public ICollection<Product> Products { get; init; } = new List<Product>();
+}
+
+internal sealed class StoreConfiguration : IEntityTypeConfiguration<Store>
+{
+    public void Configure(EntityTypeBuilder<Store> builder)
+    {
+        builder.HasMany(s => s.Products).WithOne(p => p.Store).HasForeignKey(p => p.StoreId);
+        builder.HasOne(s => s.Currency).WithMany(c => c.Stores).HasForeignKey(s => s.CurrencyId);
+    }
 }

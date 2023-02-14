@@ -5,13 +5,13 @@ using Njs.Core.Infrastructure.Persistence;
 
 namespace Njs.Core.Features.Categories;
 
-public sealed record GetAllCategoriesRequest : IRequest<GetAllCategoriesResponse>;
+public sealed record GetAllCategoriesRequest : IRequest<IEnumerable<CategoryDto>>;
 
 public sealed record GetAllCategoriesResponse(IEnumerable<CategoryDto> Categories);
 
 public sealed record CategoryDto(string Name, string Description, string LogoUrl);
 
-public sealed class GetAllCategoriesQuery : IRequestHandler<GetAllCategoriesRequest, GetAllCategoriesResponse>
+public sealed class GetAllCategoriesQuery : IRequestHandler<GetAllCategoriesRequest, IEnumerable<CategoryDto>>
 {
     private readonly NjsContext _db;
 
@@ -20,10 +20,10 @@ public sealed class GetAllCategoriesQuery : IRequestHandler<GetAllCategoriesRequ
         _db = db;
     }
     
-    public Task<GetAllCategoriesResponse> Handle(GetAllCategoriesRequest request, CancellationToken cancellationToken)
+    public Task<IEnumerable<CategoryDto>> Handle(GetAllCategoriesRequest request, CancellationToken cancellationToken)
     {
-        var categories = _db.Categories.Select(c => new CategoryDto(c.Name, c.Description, c.LogoUrl));
+        var categories = _db.Categories.Select(c => new CategoryDto(c.Name, c.Description, c.LogoUrl)).AsEnumerable();
 
-        return Task.FromResult(new GetAllCategoriesResponse(categories));
+        return Task.FromResult(categories);
     }
 }

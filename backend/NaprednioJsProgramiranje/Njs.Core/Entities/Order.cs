@@ -1,4 +1,7 @@
-﻿namespace Njs.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Njs.Core.Entities;
 
 public sealed class Order : EntityBase, IMustHaveTenant
 {
@@ -13,4 +16,12 @@ public sealed class Order : EntityBase, IMustHaveTenant
     public ICollection<OrderItem> Items { get; } = new List<OrderItem>();
     
     public string TenantId { get; set; }
+}
+
+internal sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
+{
+    public void Configure(EntityTypeBuilder<Order> builder)
+    {
+        builder.HasMany(o => o.Items).WithOne(i => i.Order).HasForeignKey(i => i.OrderId);
+    }
 }

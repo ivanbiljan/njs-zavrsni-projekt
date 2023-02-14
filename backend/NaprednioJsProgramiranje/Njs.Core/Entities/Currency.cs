@@ -1,4 +1,7 @@
-﻿namespace Njs.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Njs.Core.Entities;
 
 public sealed class Currency : EntityBase
 {
@@ -15,4 +18,12 @@ public sealed class Currency : EntityBase
     public string GroupSeparator { get; init; }
 
     public ICollection<Store> Stores { get; init; } = new List<Store>();
+}
+
+internal sealed class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
+{
+    public void Configure(EntityTypeBuilder<Currency> builder)
+    {
+        builder.HasMany(c => c.Stores).WithOne(s => s.Currency).HasForeignKey(s => s.CurrencyId);
+    }
 }

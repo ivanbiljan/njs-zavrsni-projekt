@@ -39,7 +39,7 @@ public sealed class CategoriesController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<GetAllCategoriesResponse> GetAll([FromQuery] GetAllCategoriesRequest request)
+    public async Task<IEnumerable<CategoryDto>> GetAll([FromQuery] GetAllCategoriesRequest request)
     {
         return await _mediator.Send(request);
     }
