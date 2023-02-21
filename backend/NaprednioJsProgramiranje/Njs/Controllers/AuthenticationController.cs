@@ -28,4 +28,17 @@ public sealed class AuthenticationController : ControllerBase
     {
         return await _mediator.Send(request);
     }
+
+    [HttpPost("confirm")]
+    public async Task<IActionResult> ConfirmAccount([FromBody] ConfirmAccountRequest request)
+    {
+        var response = await _mediator.Send(request);
+
+        return response switch
+        {
+            ConfirmAccountResponse.LinkExpiredOrInvalid => BadRequest(),
+            ConfirmAccountResponse.Activated => Conflict(),
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
 }
